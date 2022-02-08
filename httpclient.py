@@ -75,6 +75,8 @@ class HTTPClient(object):
     def GET(self, url, args=None):
         parsed_url = urllib.parse.urlparse(url)
         port = parsed_url.port
+        if port == None:
+            port = 80
         self.connect(parsed_url.hostname, port)
         path = parsed_url.path if parsed_url.path != "" else "/"
         host = parsed_url.hostname + ":" + str(port)
@@ -95,6 +97,8 @@ class HTTPClient(object):
     def POST(self, url, args=None):
         parsed_url = urllib.parse.urlparse(url)
         port = parsed_url.port
+        if port == None:
+            port = 80
         self.connect(parsed_url.hostname, port)
 
         # Create body
